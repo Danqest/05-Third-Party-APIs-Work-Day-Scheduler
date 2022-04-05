@@ -1,3 +1,4 @@
+// define variables
 var today = moment()
 var times = [9,10,11,12,13,14,15,16,17]
 var saveBtn0 = $('button[id="0"]')
@@ -19,16 +20,16 @@ var savedText6 = {}
 var savedText7 = {}
 var savedText8 = {}
 
-
+// note current date 
 $('#currentDay').text(today.format("dddd, MMMM Do, YYYY"))
 
 
-
+// functions on load
 function init() {
     updateFormColors()
     fetchText()
 }
-
+// updates color of boxes to be relative to current time base on hour
 function updateFormColors() {
     for (let i = 0; i < $('.form-control').length; i++) {
         if (times[i] > moment().hours()) {
@@ -42,7 +43,7 @@ function updateFormColors() {
         }
     }
 }
-
+// retrieves stored text
 function fetchText() {
     for (let i = 0; i < $('.form-control').length; i++) {
     var storedText = localStorage.getItem(('savedText'+i))
@@ -50,7 +51,7 @@ function fetchText() {
     console.log(storedText)
     }
 }
-
+// dedicates a specific button to a specific text box and saves to localstorage
 saveBtn0.on('click', function() {
     var inputText = $('textarea[id="0"]').val()
     localStorage.setItem('savedText0', inputText)
@@ -91,5 +92,5 @@ saveBtn8.on('click', function() {
 
 
 
-
+// initialize
 init()
